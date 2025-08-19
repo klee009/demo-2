@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/SignIn.css">
+    <title>LienMinhHuyenThoai</title>
+    <link rel="icon" type="image/x-icon" href="./IMG/logoT1.png">
+</head>
+<body>
+    <!-- phần header -->
+    <div id="header"> 
+     
+        <!-- nav : (left: hướng dẫn chơi,tướng,tin tức/cập nhật, video highlight) (right: form: đăng nhập, đăng ký) -->
+        <div class="h_nav">
+            <div class="h_nav_left">
+                <ul>
+                    <li><a href="TrangChu.html">Champions</a></li>
+                    <li><a href="News.html">News and Updates</a></li>
+                    <li><a href="HighlightVid.html">Hightlight Videos</a></li>
+                    <li><a href="https://www.metatft.com/comps">Meta ĐTCL</a></li>
+                </ul>
+            </div>
+            <div class="h_nav_right">
+                <ul>
+                    <li><a href="#" class="active">Sign in</a></li>
+                    <li><a href="SignUp.html">Sign up</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- phần đăng nhập -->
+    <div class="h_sign_in">
+        <form action="" id="signInForm">
+            <h1>Đăng nhập</h1>
+            <div class="input_label">
+                <label for="tdn">Tên đăng nhập : </label>
+                <input type="text" name="tdn" id="tdn" required tabindex="1" placeholder="admin"><br><br>
+                <label for="mk">Mật khẩu : </label>
+                <input type="password" name="mk" id="mk" required tabindex="2" placeholder="Nhập mật khẩu"> <br><br>
+            </div>
+            <div class="" id="btn">
+                <input type="submit" value="Sign in" id="signInBtn">
+            </div>
+            <div class="h_link_sign_in">
+                <a href="#">Quên mật khẩu ?</a>
+            </div>
+            
+            <!-- Thông tin tài khoản demo -->
+            <div class="demo-accounts" style="margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; font-size: 14px;">
+                <strong>Tài khoản demo:</strong><br>
+                Username: admin | Password: admin123<br>
+                Username: user | Password: user123
+                <div id="registeredAccountsList" style="margin-top: 10px;"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // SignIn.js - JavaScript cho trang đăng nhập
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const signInForm = document.querySelector('form');
+            
+            // Hiển thị danh sách tài khoản đã đăng ký (cho mục đích test)
+            displayRegisteredAccounts();
+            
+            signInForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Ngăn form submit mặc định
+                
+                // Lấy giá trị từ form
+                const username = document.getElementById('tdn').value.trim();
+                const password = document.getElementById('mk').value;
+                
+                // Validation cơ bản
+                if (!username || !password) {
+                    showMessage('Vui lòng điền đầy đủ thông tin!', 'error');
+                    return;
+                }
+                
+                // Kiểm tra thông tin đăng nhập (ví dụ với tài khoản mặc định)
+                if (validateLogin(username, password)) {
+                    showMessage('Đăng nhập thành công!', 'success');
+                    
+                    // Lưu thông tin đăng nhập vào memory (thay thế localStorage)
+                    window.currentUser = {
+                        username: username,
+                        loginTime: new Date().toISOString()
+                    };
+                    
+                    // Chuyển hướng sau 2 giây
+                    setTimeout(() => {
+                        window.location.href = 'TrangChu.html';
+                    }, 2000);
+                    
+                } else {
+                    showMessage('Tên đăng nhập hoặc mật khẩu không đúng!', 'error');
+                }
+            });
+        });
+
+        // Hàm kiểm tra thông tin đăng nhập
+        function validateLogin(username, password) {
+            // Lấy danh sách tài khoản đã đăng ký từ URL parameters hoặc sessionStorage simulation
+            const registeredUsers = getRegisteredUsers();
+            
+            // Tài khoản mặc định
+            const defaultUsers = [
+                { username: 'admin', password: 'admin123' },
+                { username: 'user', password: 'user123' }
+            ];
+            
+            // Kiểm tra trong danh sách đã đăng ký
+            const foundUser = registeredUsers.find(user => 
+                user.username === username && user.password === password
+            );
+            
+            // Kiểm tra tài khoản mặc định
+            const foundDefaultUser = defaultUsers.find(user => 
+                user.username === username && user.password === password
+            );
+            
+            return foundUser || foundDefaultUser;
+        }
+
+        // Hàm lấy danh sách tài khoản đã đăng ký (simulation)
+        function getRegisteredUsers() {
+            // Giả lập danh sách tài khoản đã đăng ký bằng cách mã hóa trong URL hoặc sử dụng cookie
+            try {
+                // Thử lấy từ cookie nếu có
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    const [name, value] = cookie.trim().split('=');
+                    if (name === 'registeredUsers') {
+                        return JSON.parse(decodeURIComponent(value));
+                    }
+                }
+            } catch (e) {
+                console.log('No registered users found in cookies');
+            }
+            
+            // Trả về mảng rỗng nếu không tìm thấy
+            return [];
+        }
+
+        // Hàm hiển thị danh sách tài khoản đã đăng ký (cho mục đích test)
+        function displayRegisteredAccounts() {
+            const registeredUsers = getRegisteredUsers();
+            const listElement = document.getElementById('registeredAccountsList');
+            
+            if (registeredUsers.length > 0) {
+                listElement.innerHTML = '<strong style="color: #4CAF50;">Tài khoản đã đăng ký:</strong><br>';
+                registeredUsers.forEach(user => {
+                    listElement.innerHTML += `Username: ${user.username} | Password: ${user.password}<br>`;
+                });
+            }
+        }
+
+        // Hàm hiển thị thông báo
+        function showMessage(message, type) {
+            // Tạo element thông báo
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = message;
+            
+            // Style cho thông báo
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 15px 30px;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                z-index: 1000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                ${type === 'success' ? 'background-color: #4CAF50;' : 'background-color: #f44336;'}
+            `;
+            
+            // Thêm vào body
+            document.body.appendChild(messageDiv);
+            
+            // Hiển thị với animation
+            setTimeout(() => {
+                messageDiv.style.opacity = '1';
+            }, 100);
+            
+            // Tự động ẩn sau 3 giây
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.parentNode.removeChild(messageDiv);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Thêm CSS cho form validation
+        const style = document.createElement('style');
+        style.textContent = `
+            .input-error {
+                border: 2px solid #f44336 !important;
+                background-color: #ffebee !important;
+            }
+            
+            .input-success {
+                border: 2px solid #4CAF50 !important;
+                background-color: #e8f5e8 !important;
+            }
+            
+            .form-loading {
+                opacity: 0.7;
+                pointer-events: none;
+            }
+            
+            .active {
+                font-weight: bold;
+                text-decoration: underline;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
