@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* phần style chung của các thẻ */
+a{
+    text-decoration: none;
+}
+ul{
+    list-style-type: none;
+}
+body{
+    background-color: rgb(218, 215, 215);
+}
+/* phần nav chung */
+.h_nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 60px;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.h_nav_left,.h_nav_right{
+    width: 45%;
+    display: block;
+}
+.h_nav ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.h_nav ul li{
+    display: block;
+    width: 20%;
+}
+
+/* phần nav a chung */
+.h_nav ul li>a{
+    display: block;
+    line-height: 60px;
+    color: yellow;
+    text-align: center;
+}
+.h_nav li:hover a{
+    background-color: rgb(219, 207, 207);
+    color: red;
+}
+/* phần khác biệt nav left và right  */
+.h_nav .h_nav_left ul{
+    justify-content: space-around;
+}
+.h_nav .h_nav_right ul{
+    justify-content: end ;
+}
+/* phần content */
+#content>h1{
+    line-height: 200px;
+    text-align: center;
+    font-style: italic;
+    font-size: 100px;
+    margin: 20px 0;
+    text-shadow: 0 0 5px red;
+}
+.h_video_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.h_video{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: justify;
+    margin: 30px 0;
+}
+.h_video_left{
+    width: 30%;
+}
+.h_video_right{
+    width: 55%;
+}
+.h_video_right h1{
+    color: red;
+    font-size: 30px;
+}
+.h_video video{
+    width: 100%;
+    height: auto;
+}
+/* phần footer */
+#footer{
+    background-color: black;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: white;
+}
+.h_footer_left,.h_footer_right{
+    width: 45%;
+    margin: 20px 20px;
+}
+.h_footer_left p{
+    margin:5px
+}

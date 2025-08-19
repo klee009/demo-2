@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("./bg_signup.webp");
+    opacity: 0.8;
+}
+a{
+    text-decoration: none;
+}
+.h_sign_up{
+    
+    display: block;
+    position: relative;
+    width: 30%;
+    top: 50vh;
+    left: 50%;  
+    height: 400px; 
+    transform: translate(-50%,-50%); 
+    overflow: hidden;
+    padding: 5px;
+}
+/* phần hiệu ứng khung */
+.h_sign_up::before{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 152%;
+    height: 160%;
+    background-image: linear-gradient(to right,black,yellow,red,blue);
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    animation: hieu_ung_khung 3s infinite linear;
+}
+@keyframes hieu_ung_khung {
+    0%{transform: translate(-50%,-50%) rotate(0deg);}
+    100%{transform: translate(-50%,-50%) rotate(360deg);}
+}
+/* style phần form */
+form{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+}
+form h1{
+    text-align: center;
+    text-shadow: 0 0 2px yellow,0 0 2px red;
+}
+input{
+    display: inline-block;
+    width: 54%;
+    height: 20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-left: 30px;
+}
+label{
+    display: inline-block;
+    width: 36%;
+}
+.input_label{
+    padding: 20px;
+    
+}
+#btn{
+    display: block;
+    text-align: center;
+}
+#btn input{
+    margin: 0;
+    width: 100px;
+    height: 60px;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+#btn input:hover{
+    opacity: 0.7;
+    cursor:pointer;
+    box-shadow: 0 0 5px yellow;
+}
+.h_link_sign_up{
+    text-align: center;
+    margin: 10px;
+}
+a{
+    color: black;   
+}
+/* phần header */
+
+/* phần nav chung */
+
+.h_nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 60px;
+    background-color: black;
+
+}
+.h_nav_left,.h_nav_right{
+    width: 45%;
+    display: block;
+}
+.h_nav ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.h_nav ul li{
+    display: block;
+    width: 20%;
+}
+
+/* phần nav a chung */
+.h_nav ul li>a{
+    display: block;
+    line-height: 60px;
+    color: yellow;
+    text-align: center;
+}
+.h_nav li:hover a{
+    background-color: rgb(219, 207, 207);
+    color: red;
+}
+/* phần khác biệt nav left và right  */
+.h_nav .h_nav_left ul{
+    justify-content: space-around;
+}
+.h_nav .h_nav_right ul{
+    justify-content: end ;
+}

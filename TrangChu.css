@@ -1,0 +1,231 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* phần style chung của các thẻ */
+a{
+    text-decoration: none;
+
+}
+ul{
+    list-style-type: none;
+}
+body{
+    background-color: rgb(218, 215, 215);
+}
+.h_champion_list .h_champion img{
+    width: 100%;
+    height: 100%;
+}
+/* phần header */
+
+/* phần header logo và slogan */
+
+.h_thongtin{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.h_logo{
+    width: 20%;
+    background-image: url("./logo.jpg") ;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.h_slogan{
+    width: 80%;
+    background-color: white;
+    height: 200px;
+}
+.h_slogan h1,h3,p{
+    margin: 5px;
+}
+.h_slogan>p{
+    font-size: 25px;
+}
+.h_slogan>p>i{
+    color: rgb(239, 239, 111)
+}
+/* phần nav chung */
+
+.h_nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 60px;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.h_nav_left,.h_nav_right{
+    width: 45%;
+    display: block;
+}
+.h_nav ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.h_nav ul li{
+    display: block;
+    width: 20%;
+}
+
+/* phần nav a chung */
+.h_nav ul li>a{
+    display: block;
+    line-height: 60px;
+    color: yellow;
+    text-align: center;
+}
+.h_nav li:hover a{
+    background-color: rgb(219, 207, 207);
+    color: red;
+}
+/* phần khác biệt nav left và right  */
+.h_nav .h_nav_left ul{
+    justify-content: space-around;
+}
+.h_nav .h_nav_right ul{
+    justify-content: end ;
+}
+/* phần content */
+/* phần img content và h1 content */
+
+.h_img_content img{
+    width: 100vw;
+    height: calc(100vh - 20%);
+}
+#content>h1{
+    text-align: center;
+    margin:20px 0;
+    font-size: 4em;
+    font-style: italic;
+    text-shadow: 0 0 5px yellow;
+}
+/* phần top tier content */
+
+.h_toptier{
+    margin: 30px auto;
+    width: calc(100vw - 30%);
+    padding: 30px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+.h_toptier_champ{
+    width: 10%;
+    height: 300px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+    box-shadow: 0 0 5px blue,0 0 5px yellow;
+    flex: 1;
+    cursor: pointer;
+    transition: flex 1s;
+}
+.h_toptier_champ:hover{
+    flex: 6;
+}
+.h_toptier_champ h3{
+    display: none;
+    transition: display 1s;
+}
+.h_toptier_champ:hover h3{
+    display: block;
+    text-align: center;
+    font-size: 2rem;
+    color: red;
+    text-shadow: 0 0 5px yellow;
+}
+/* Phần paragraph content */
+.h_para_content{
+    margin-top: 60px;
+    text-align: center;
+    font-weight: 200;
+    font-size: 40px;
+    text-shadow: 0 0 5px yellow;
+}
+.h_para_content span{
+    font-size: 100px;
+    text-shadow: 0 0 5px red;
+}
+/* phần champion list content */
+.h_champion_list{
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.h_champion{
+    width: 30%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px white;
+    padding: 5px;
+    margin: 20px 0px;
+}
+/* phần hiệu ứng khung champion */
+.h_champion::before{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 122%;
+    height: 180%;
+    background-image: linear-gradient(to right,black,yellow,red,blue);
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    animation: hieu_ung_khung 3s infinite linear;
+}
+@keyframes hieu_ung_khung {
+    0%{transform: translate(-50%,-50%) rotate(0deg);}
+    100%{transform: translate(-50%,-50%) rotate(360deg);}
+}
+.h_sub_champion{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+/* phần champion list content thẻ a */
+.h_champion a{
+    display: block;
+    overflow: hidden;
+    background-color: black;
+}
+.h_sub_champion a:last-child{
+    padding-left: 15px;
+    color: white;
+    font-size: 36px;
+    font-style: italic;
+}
+.h_sub_champion a>img{
+    transition: transform 0.5s;
+}
+.h_sub_champion a:last-child:hover{
+    background-color: black;
+    opacity: 0.7;
+    color: white;
+}
+.h_champion a>img:hover{
+    transform: scale(1.2);
+}
+/* phần footer */
+#footer{
+    background-color: black;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: white;
+}
+.h_footer_left,.h_footer_right{
+    width: 45%;
+    margin: 20px 20px;
+}
+.h_footer_left p{
+    margin:5px
+}
